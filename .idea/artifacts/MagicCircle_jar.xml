@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MagicCircle:jar">
+    <output-path>$PROJECT_DIR$/../../SpigotTestServer/plugins</output-path>
+    <root id="archive" name="MagicCircle.jar">
+      <element id="module-output" name="MagicCircle" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../SpigotMC/Spigot/Spigot-Server/target/spigot-1.11.2-R0.1-SNAPSHOT.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/multiblock.api.r1.3.1.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>

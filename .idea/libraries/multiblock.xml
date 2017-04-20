@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="multiblock">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../SpigotMC/multiblock.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../SpigotMC/multiblock.jar!/" />
+    </SOURCES>
+  </library>
+</component>

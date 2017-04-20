@@ -1,0 +1,5 @@
+main: me.bluemond.magiccircle.MagicCircle
+name: MagicCircle
+version: 0.1
+author: BlueMond
+description: Allows for the utilization of magic through ground scriptures.
