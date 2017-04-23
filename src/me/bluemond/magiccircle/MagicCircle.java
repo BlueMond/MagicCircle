@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import me.bluemond.magiccircle.listeners.EventListener;
 import me.bluemond.magiccircle.multiblocks.RuneMultiBlock;
+import me.bluemond.magiccircle.multiblocks.SnackRuneMultiBlock;
+import me.bluemond.magiccircle.runes.SnackRune;
 import me.bluemond.magiccircle.storage.EssenceCache;
 import me.bluemond.magiccircle.storage.SpaceCache;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -26,6 +28,9 @@ public class MagicCircle extends JavaPlugin{
 		logger = this.getLogger();
 		PluginDescriptionFile desc = this.getDescription();
 
+		//creates class instances of rune files
+		initializeRunes();
+
 		//register caches
 		registerCaches();
 
@@ -39,7 +44,11 @@ public class MagicCircle extends JavaPlugin{
 		logger.info(desc.getName() + " version(" + desc.getVersion() + ") has been successfully started!");
 		
 	}
-	
+
+	private void initializeRunes() {
+		new SnackRune();
+	}
+
 	@Override
 	public void onDisable(){
 		
@@ -52,7 +61,7 @@ public class MagicCircle extends JavaPlugin{
 	
 	private void registerMultiBlocks(){
 		MultiBlockFactory.INSTANCE.register(this, AltarMultiBlock.class);
-		MultiBlockFactory.INSTANCE.register(this, RuneMultiBlock.class);
+		MultiBlockFactory.INSTANCE.register(this, SnackRuneMultiBlock.class);
 	}
 	
 	private void registerListeners() {

@@ -38,6 +38,7 @@ public class EventListener implements Listener {
 		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
 			ItemStack item = player.getInventory().getItemInMainHand();
 
+			System.out.println(event.getClickedBlock().getState().getData());
 			//check for gold pickaxe in hand
 			if(item.getType().equals(Material.GOLD_PICKAXE)){
 
@@ -59,6 +60,11 @@ public class EventListener implements Listener {
 							Check player's current rune placement toggle through data class
 							 */
 
+							/*
+							Todo
+							Don't allow players to place on top of runes or where runes have already
+							been placed
+							 */
 
 
 							//use that location to place a rune space

@@ -1,9 +1,11 @@
 package me.bluemond.magiccircle.multiblocks;
 
 import me.bluemond.magiccircle.MagicCircle;
+import me.bluemond.magiccircle.runes.Rune;
 import me.bluemond.magiccircle.storage.SpaceCache;
 import nl.shanelab.multiblock.*;
 import nl.shanelab.multiblock.patternobjects.PatternBlock;
+import org.apache.commons.lang.ObjectUtils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -15,29 +17,25 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-public class RuneMultiBlock implements IMultiBlock{
+public abstract class RuneMultiBlock implements IMultiBlock{
 
-	MultiBlockPattern multiBlockPattern;
+	static Class<? extends Rune> runeClass;
+	static MultiBlockPattern multiBlockPattern;
 
+
+	public static void setRuneClass(Class<? extends Rune> classType){
+		runeClass = classType;
+	}
+
+	public static void setMultiBlockPattern(MultiBlockPattern mbp){
+		multiBlockPattern = mbp;
+	}
 
 	@Override
-	public MultiBlockPattern getMultiBlockPattern() {
-		SpecificMaterial carp = SpecificMaterial.CARPET_WHITE;
-
-		multiBlockPattern = new MultiBlockPattern(
-				carp,
-				new PatternBlock(carp, -1, 0, -1),
-				new PatternBlock(carp, -1, 0, 0),
-				new PatternBlock(carp, -1, 0, 1),
-				new PatternBlock(carp, 0, 0, 1),
-				new PatternBlock(carp, 1, 0, 1),
-				new PatternBlock(carp, 1, 0, 0),
-				new PatternBlock(carp, 1, 0, -1),
-				new PatternBlock(carp, 0, 0, -1)
-		);
-		
+	public MultiBlockPattern getMultiBlockPattern(){
 		return multiBlockPattern;
 	}
 
@@ -49,8 +47,14 @@ public class RuneMultiBlock implements IMultiBlock{
 		//if the core of the rune was right clicked
 		System.out.println("RUNE ACTIVATED!");
 		if(activation.getType() == MultiBlockActivationType.CORE_INTERACTED && spaceCache.verify(loc, multiBlockPattern)){
-			
-			player.sendRawMessage("You a lil bitch.");
+			try {
+				Rune rune = runeClass.newInstance().getInstance();
+				rune.onRightClickCore(loc, player);
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
